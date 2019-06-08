@@ -1,0 +1,27 @@
+<h1>Prices List</h1>
+<p>This is a list of prices offered by providers.</p>
+<a [routerLink]="['']" class="btn btn-secondary mb-3">Return</a>
+<a [routerLink]="['/price/new/']" class="btn btn-primary mb-3 ml-3">Add Price</a>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-4" *ngFor="let price of allPrices | async">
+        <div class="card bg-white text-white m-3">
+            <img src="assets/images/Welcome Specialized.png" class="card-img" alt="..." style="height: 20em;">
+            <div class="card-img-overlay bg-dark" style="opacity: 0.1; z-index: 1; height: 30%; top:70%;">
+            </div>
+            <div class="card-img-overlay">
+                <span class="badge badge-danger" style="position: absolute; top: -2%; left: -2%; font-size: 1em;">Id: {{price.Id}}</span>
+            </div>
+            <div class="card-img-overlay" style="z-index: 2; height: 30%; top:70%;">
+              <h6 class="card-title text-dark" style="font-size: 0.8rem;">{{price.PartName}}, <span class="text-info">${{price.Price}}</span></h6>
+              <p class="card-text text-secondary" style="font-size: 0.8rem;">by {{price.SellerName}}</p>
+              <div style="position: absolute; bottom: 10%; right: 5%;">
+                  <button  type="button" style="font-size: 0.8rem;"  class="btn btn-primary px-2 mr-2" matToolTip="Click Edit Button"  (click)="loadPriceToEdit(price.Id)">Edit</button>
+                  <button  type="button" style="font-size: 0.8rem;" class="btn btn-primary px-2" matToolTip="Click Edit Button"  (click)="deletePrice(price.Id)">Remove</button>
+                </div>
+            </div>
+          </div>  
+    </div>
+  </div>
+</div>

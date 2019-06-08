@@ -1,0 +1,57 @@
+<h1>Order List</h1>
+<p>This is a list of all previous orders.</p>
+<a [routerLink]="['']" class="btn btn-secondary mb-3">Return</a>
+<a [routerLink]="['/order/new/']" class="btn btn-primary mb-3 ml-3">Add Order</a>
+
+<div class="container mb-3">
+  <div class="row">
+    <div class="col-xl-12" id="headers">
+      <div class="card mb-1  bg-warning">
+          <div class="row no-gutters">
+            <div class="col-md-1 m-3">
+                <h5 class="text-center mb-0">Id</h5>
+            </div>
+            <div class="col-md m-3">
+                <h5 class="text-center mb-0">Date</h5>
+            </div>
+            <div class="col-md m-3">
+                <h5 class="text-center mb-0">Bill Number</h5>
+            </div>
+            <div class="col-md m-3">
+                <h5 class="text-center mb-0">Seller</h5>
+            </div>
+            <div class="col-md m-3">
+                <h5 class="text-center mb-0">Edit</h5>
+            </div>
+            <div class="col-md m-3">
+                <h5 class="text-center mb-0">Remove</h5>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-xl-12" *ngFor="let order of allOrders | async">
+        <div class="card mb-1">
+            <div class="row no-gutters  align-middle">
+              <div class="col-md-1 m-3">
+                    <p class="text-center mb-0">{{order.Id}}</p>
+              </div>
+              <div class="col-md m-3">
+                    <p class="text-center  mb-0">{{order.Date}}</p>
+              </div>
+              <div class="col-md m-3">
+                  <p class="text-center  mb-0">{{order.BillNumber}}</p>
+              </div>
+              <div class="col-md m-3">
+                  <p class="text-center  mb-0">{{order.SellerName}}</p>
+              </div>
+              <div class="col-md m-3 text-center">
+                  <button type="button" class="btn btn-primary px-4" matToolTip="Click Edit Button"  (click)="loadOrderToEdit(order.Id)">Edit</button>
+              </div>
+              <div class="col-md m-3 text-center">
+                  <button type="button" class="btn btn-primary px-4" matToolTip="Click Edit Button"  (click)="deleteOrder(order.Id)">Delete</button>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

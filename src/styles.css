@@ -1,1 +1,137 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.min.css';
+
+
+#top-image{
+    top: 0;
+    z-index: 1;
+}
+
+#bottom-image{
+    z-index: 3;
+}
+
+#body{
+    z-index: 2;
+    background-color: rgb(254,254,254);
+}
+
+#bottom-image{
+    background-image: url('assets/images/bottom-image.jpg');
+    z-index: 4;
+    color: white;
+}
+
+footer{
+    position:absolute;
+    top: 0;
+}
+
+footer i{
+    font-size:2.5em;
+    margin: 0.1em 0.2em;
+    border-radius: 10px;
+}
+
+footer i:hover{
+    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,0) 6%,rgba(255,255,255,1) 10%, rgba(255,255,255,1) 8%, rgba(255,255,255,1) 15%, rgba(255,255,255,1) 95%, rgba(255,255,255,0) 95%, rgba(255,255,255,0) 100%);
+}
+
+nav{
+    background: rgba(52,58,64,0.9) !important;
+    margin-top: -75px;
+    z-index: 2;
+}
+
+
+
+#facebook:hover{
+    color:#3C5A99;
+    transition: color 200ms ease-in-out;
+}
+
+#twitter:hover{
+    color:#1DA1F2;
+    transition: color 200ms ease-in-out;
+}
+
+#instagram{
+    text-align: center;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    border-radius: 10px;
+}
+#instagram:hover{
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    color: white;
+    transition: color 200ms ease-in-out;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    box-shadow: inset 0 0 40px 20px transparent;
+}
+
+#google:hover{
+    color:#ea4335;
+    background: transparent !important;
+    transition: color 200ms ease-in-out;
+}
+
+footer{
+    position:absolute;
+    bottom: 30px;
+}
+#social-media{
+    position: relative;
+    margin-bottom: 0%;
+}
+
+.btn-success{
+    background: #64C5B4;
+    border-color: #64C5B4;
+    transition: padding 200ms ease-in-out;
+}
+
+.btn-success:hover{
+    background: #8CD4C2;
+    border-color:#8CD4C2;
+}
+
+#menu{
+    background: rgb(254,254,254);
+    transition: background-color 200ms ease-in-out;
+}
+
+#menu:hover{
+   background: #64C5B4;
+    color: white;
+    transition: background-color 300ms ease-in-out;
+}
+
+
+#menu:hover .btn-success{
+    background: white;
+    color: black;
+    padding-left: 3em !important;
+    padding-right: 3em !important;
+    transition: padding 200ms ease-in-out;
+}
+
+/*.card:hover i{
+    color: white !important;
+}*/
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail-row{
+    animation: slide-up 0.5s ease-in-out;
+}

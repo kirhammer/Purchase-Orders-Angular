@@ -1,0 +1,65 @@
+<h1>New Provider</h1>
+<a [routerLink]="['/seller/list/']" class="btn btn-secondary mb-3">Return</a>
+
+<div class="container">
+    <div class="card m-3">
+        <h5 class="card-header">Vendor Registration Form</h5>
+        <div class="card-body">
+            <form [formGroup]="sellerForm" (ngSubmit) = "onFormSubmit(sellerForm.value)">
+                <div class="mx-5 mb-3">
+                    <input formControlName="Id" type="hidden" class="form-control">
+                    <div class="row">
+                        <label for="name">Name:</label>
+                    </div>
+                    <div class="row">
+                        <input formControlName="Name" placeholder="Name" class="form-control">
+                    </div>
+                </div>
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                        <label for="address">Address:</label>
+                    </div>
+                    <div class="row">
+                        <input formControlName="Address" placeholder="Address" class="form-control">
+                    </div>
+                </div>
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                        <label for="phone">Phone:</label>
+                    </div>
+                    <div class="row">
+                        <input formControlName="Phone" placeholder="Phone" class="form-control">
+                    </div>
+                </div>
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                        <label for="city">City:</label>
+                    </div>
+                    <div class="row">
+                        <select name="" id="" class="form-control" formControlName="CityId">
+                            <option value="" *ngFor="let city of allCities | async" value={{city.Id}}>{{city.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                        <label for="region">Region:</label>
+                    </div>
+                    <div class="row">
+                        <select name="" id="" class="form-control" formControlName="RegionId">
+                            <option value="" *ngFor="let region of allRegions | async" value={{region.Id}}>{{region.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mx-5">
+                    <div class="row" *ngIf="IdSeller == null">
+                            <button type="submit" class="btn btn-primary mx-auto px-5">Add</button>    
+                    </div>
+                    <div  class="row" *ngIf="IdSeller != null">
+                            <button type="submit" class="btn btn-primary mx-auto px-5" >Update</button>    
+                    </div>
+                </div>
+              </form>
+          </div>
+    </div>
+</div>

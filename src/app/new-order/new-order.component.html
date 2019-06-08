@@ -1,0 +1,133 @@
+<h1>New Order</h1>
+<a [routerLink]="['/order/list/']" class="btn btn-secondary mb-3">Return</a>
+
+<div class="container">
+  <div class="card m-3">
+  <form [formGroup]="orderForm" (ngSubmit) = "onFormSubmit(orderForm.value)">
+      <input formControlName="Id" type="hidden" placeholder="Date" class="form-control" id="Date" #Order>
+      <div class="row bg-info mx-0">
+        <div class="col-md-6">
+            <h5 class="card-header bg-info text-center">New Order Registration Form</h5>
+        </div>
+        <div class="col  bg-info">
+          <div class="input-group mt-1 mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-info border-info font-weight-bold" for="price">Date</span>
+              </div>
+              <input formControlName="Date" type="date" placeholder="Date" class="form-control" id="Date">
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group mt-1  mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-info border-info font-weight-bold" for="price">Bill Number</span>
+              </div>
+              <input formControlName="BillNumber" placeholder="####" class="form-control" id="Date">
+          </div>
+        </div>
+      </div>
+      <div class="row card-body">
+        <div class="input-group mt-1 mx-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-warning border-warning font-weight-bold" for="price">Seller</span>
+            </div>
+            <select name="" id="" class="form-control" formControlName="Seller"  (change)="filterPrices($event.target.value)">
+                <option value="" *ngFor="let seller of allSellers | async" value={{seller.Id}}>{{seller.Name}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="row m-3" *ngIf="IdOrder == null">
+          <button type="submit" class="btn btn-primary mx-auto px-5">Add</button>    
+      </div>
+      <div class="row m-3" *ngIf="IdOrder != null">
+          <button type="submit" class="btn btn-primary mx-auto px-5">Update</button>    
+      </div>
+  </form>
+  <div class="row mx-0">
+      <div class="col">
+        <h5 class="text-center mb-2">Prices offered by Provider</h5>
+        <div class="card mb-1">
+          <div class="row no-gutters  bg-warning">
+              <div class="col-md m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Id</h6>
+              </div>
+              <div class="col-md-3 m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Part</h6>
+              </div>
+              <div class="col-md m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Price</h6>
+              </div>
+              <div class="col-md-2 m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Quantity</h6>
+              </div>
+              <div class="col-md m-3"> 
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Add</h6>
+              </div>
+            </div>
+            <div class="row no-gutters  align-middle" *ngFor="let price of allPrices | async">
+                <div class="col-md m-3">
+                      <p class="text-center mb-0" style="font-size: 0.7rem">{{price.Id}}</p>
+                </div>
+                <div class="col-md-3 m-3">
+                      <p class="text-center  mb-0" style="font-size: 0.7rem">{{price.PartName}}</p>
+                      <input  #Part value="{{price.Part}}" type="hidden" class="form-control" id="quantity">
+                </div>
+                <div class="col-md m-3">
+                    <p class="text-center  mb-0"  style="font-size: 0.6rem">${{price.Price}}</p>
+                    <input  #UnitPrice value="{{price.Price}}" type="hidden" class="form-control" id="quantity">
+                </div>
+                <div class="col-md-2 m-3  text-center">
+                    <input #Quantity placeholder="####" class="form-control" id="quantity">
+                </div>
+                <div class="col-md m-3 text-center">
+                        <input #one value="{{Order.value}}" type="hidden" class="form-control" id="quantity">
+                        <input #two value="{{Part.value}}" type="hidden" class="form-control" id="quantity">
+                        <input #three value="{{UnitPrice.value}}" type="hidden" class="form-control" id="quantity">
+                      <button type="button" (click) = "onDetailSubmit(one.value,two.value,three.value,Quantity.value)" class="btn btn-primary mx-auto" style="font-size: 0.6rem">Add</button>    
+                  </div>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+          <h5 class="text-center mb-2">Products added</h5>
+          <div class="card mb-1">
+          <div class="row no-gutters  bg-warning">
+              <div class="col-md m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Id</h6>
+              </div>
+              <div class="col-md-3 m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Part</h6>
+              </div>
+              <div class="col-md m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Quant.</h6>
+              </div>
+              <div class="col-md m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">U. Price</h6>
+              </div>
+              <div class="col-md m-3">
+                  <h6 class="text-center mb-0" style="font-size: 0.8rem">Remove</h6>
+              </div>
+            </div>
+            <div class="row no-gutters  align-middle" *ngFor="let detail of allDetails | async">
+              <div class="col-md m-3">
+                    <p class="text-center mb-0" style="font-size: 0.6rem">{{detail.Id}}</p>
+                    <input #Detail type="hidden" value="{{detail.Id}}" class="form-control" id="quantity">
+              </div>
+              <div class="col-md-3 m-3">
+                    <p class="text-center  mb-0" style="font-size: 0.6rem">{{detail.PartName}}</p>
+              </div>
+              <div class="col-md m-3">
+                  <p class="text-center  mb-0" style="font-size: 0.6rem">{{detail.Quantity}}</p>
+              </div>
+              <div class="col-md m-3">
+                  <p class="text-center  mb-0" style="font-size: 0.6rem">{{detail.UnitPrice}}</p>
+              </div>
+              <div class="col-md m-3 text-center">
+                  <button (click)="onDetailDelete(Detail.value)"  style="font-size: 0.6rem" type="button" class="btn btn-primary mx-auto">Remove</button>    
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

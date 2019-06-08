@@ -1,0 +1,30 @@
+<h1>Part List</h1>
+<p>This is a list of all available parts.</p>
+<a [routerLink]="['']" class="btn btn-secondary mb-3">Return</a>
+<a [routerLink]="['/part/new/']" class="btn btn-primary mb-3 ml-3">Add Part</a>
+
+<div class="container">
+  <div class="row">
+    <div class="col-l-4" *ngFor="let part of allParts | async">
+        <div class="card mb-3 mx-2">
+            <div class="row no-gutters">
+              <div class="col-md">
+                <div class="card-body bg-dark">
+                 <span class="badge badge-danger badge-pill mb-2">Id: {{part.Id}}</span>
+                  <h6 class="card-title mb-1" style="color: white;">{{part.Description}}</h6>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md" style="position: relative;">
+                    <img src="assets/images/Welcome Specialized.png" class="card-img p-4" alt="..." style="height: 250px;">
+                    <div style="position: absolute; bottom: 2%; right: 6%;">
+                        <button  type="button" class="btn btn-primary px-4 mr-2" matToolTip="Click Edit Button"  (click)="loadPartToEdit(part.Id)">Edit</button>
+                        <button type="button" class="btn btn-primary px-4" matToolTip="Click Edit Button"  (click)="deletePart(part.Id)">Delete</button>    
+                    </div>
+                 </div>
+            </div>
+          </div>
+
+    </div>
+  </div>

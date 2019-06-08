@@ -1,0 +1,54 @@
+<h1>New Price</h1>
+<a [routerLink]="['/price/list/']" class="btn btn-secondary mb-3">Return</a>
+
+<div class="container">
+    <div class="card m-3">
+        <h5 class="card-header bg-info">New Price Registration Form</h5>
+        <div class="card-body">
+            <form [formGroup]="priceForm" (ngSubmit) = "onFormSubmit(priceForm.value)">
+                <input formControlName="Id" type="hidden" placeholder="Price" class="form-control" id="Id">
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                        <label for="name">Part:</label>
+                    </div>
+                    <div class="row">
+                        <select name="" id="" class="form-control" formControlName="Part">
+                            <option value="" *ngFor="let part of allParts | async" value={{part.Id}}>{{part.Description}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                        <label for="name">Seller:</label>
+                    </div>
+                    <div class="row">
+                        <select name="" id="" class="form-control" formControlName="Seller">
+                            <option value="" *ngFor="let seller of allSellers | async" value={{seller.Id}}>{{seller.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                        <label for="name">Price:</label>
+                    </div>
+                    <div class="row">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" for="price">$</span>
+                        </div>
+                        <input formControlName="Price" placeholder="Price" class="form-control" id="price">
+                      </div>
+                    </div>
+                </div>
+                <div class="mx-5">
+                    <div class="row" *ngIf="IdPrice == null">
+                            <button type="submit" class="btn btn-primary mx-auto px-5">Add</button>    
+                    </div>
+                    <div  class="row" *ngIf="IdPrice != null">
+                            <button type="submit" class="btn btn-primary mx-auto px-5" >Update</button>    
+                    </div>
+                </div>
+              </form>
+          </div>
+    </div>
+</div>

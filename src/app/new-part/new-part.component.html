@@ -1,0 +1,31 @@
+<h1>New Part</h1>
+<a [routerLink]="['/part/list/']" class="btn btn-secondary mb-3">Return</a>
+
+<div class="container">
+    <div class="card m-3">
+        <h5 class="card-header bg-info">New Part Registration Form</h5>
+        <div class="card-body">
+            <form [formGroup]="partForm" (ngSubmit) = "onFormSubmit(partForm.value)">
+                <input formControlName="Id" type="hidden" class="form-control">
+                <div class="mx-5 mb-3">
+                    <div class="row">
+                        <label for="name">Description:</label>
+                    </div>
+                    <div class="row">
+                        <textarea formControlName="Description" placeholder="Description" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="mx-5">
+                    <div class="mx-5">
+                        <div class="row" *ngIf="IdPart == null">
+                                <button type="submit" class="btn btn-primary mx-auto px-5">Add</button>    
+                        </div>
+                        <div  class="row" *ngIf="IdPart != null">
+                                <button type="submit" class="btn btn-primary mx-auto px-5" >Update</button>    
+                        </div>
+                    </div>
+                </div>
+              </form>
+          </div>
+    </div>
+</div>

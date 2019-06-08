@@ -1,0 +1,31 @@
+<h1>Provider List</h1>
+<p>This is a list of active providers.</p>
+<a [routerLink]="['']" class="btn btn-secondary mb-3">Return</a>
+<a [routerLink]="['/seller/new/']" class="btn btn-primary mb-3 ml-3">Add Provider</a>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12" *ngFor="let seller of allSellers | async">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="assets/images/{{seller.Name}}.png" class="card-img p-4" alt="..." style="height: 250px;">
+              </div>
+              <div class="col-md-4">
+                <div class="card-body">
+                  <h5 class="card-title mb-4">{{seller.Name}}</h5>
+                  <p class="card-text mb-3">Phone: {{seller.Phone}}</p> 
+                  <p class="card-text mb-3">Address: {{seller.Address}}</p>
+                  <p class="card-text mb-3"><small class="text-muted" style="font-size: 1em;">{{seller.CityName}}, {{seller.RegionName}}</small></p>
+                  <button type="button" class="btn btn-primary mt-3 mr-3" matToolTip="Click Edit Button"  (click)="loadSellerToEdit(seller.Id)">Edit</button>
+                  <button type="button" class="btn btn-primary mt-3" matToolTip="Click Delete Button"  (click)="loadSellerToDelete(seller.Id)">Remove</button>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8997630485887!2d-77.28782348564484!3d1.22948299910324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed477f707df6f%3A0x8d6649a24404ba4f!2sWelcome+Specialized+Pasto!5e0!3m2!1sen!2sco!4v1559074582093!5m2!1sen!2sco" width="370" height="280" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
